@@ -3,21 +3,6 @@ import NoMeetingRoomIcon from '@mui/icons-material/NoMeetingRoom';
 import React, {PropsWithChildren} from 'react';
 
 const sharedRoomList = () => {
-  const [checked, setChecked] = React.useState([0]);
-
-  const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
-  
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
       {[0, 1, 2, 3].map((value) => {
@@ -35,7 +20,7 @@ const sharedRoomList = () => {
             }
             disablePadding
           >
-            <ListItemButton role={undefined} onClick={handleToggle(value)}>
+            <ListItemButton role={undefined}>
               <ListItemText id={labelId} primary={`ルーム ${value + 1}`}/>
             </ListItemButton>
           </ListItem>

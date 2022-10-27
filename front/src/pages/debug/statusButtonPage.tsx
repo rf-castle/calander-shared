@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import StatusButton, {Status} from '../../components/statusButton';
-import PublicityButton, {Publicity} from '../../components/publicityButton';
+import StatusButton, {Status} from '../../components/button/statusButton';
+import PublicityButton, {Publicity} from '../../components/button/publicityButton';
 
 const testPage = () => {
   const [status, setStatus] = useState<Status>('ok');

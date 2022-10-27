@@ -1,5 +1,5 @@
 import React from "react"
-import SharedRoomList from '../../components/sharedRoomList';
+import SharedRoomList from '../../components/list/sharedRoomList';
 
 const testPage = () => {
   return (

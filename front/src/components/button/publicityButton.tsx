@@ -2,11 +2,11 @@ import { ToggleButton, ToggleButtonGroup} from '@mui/material';
 import React from 'react';
 
 export type Publicity = 'all' | 'existOnly'
-export type statusButtonProps = {
+export type publicityButtonProps = {
   status: Publicity,
   setStatus: (status: Publicity) => any
 }
-const publicityButton = (props: statusButtonProps) => {
+const publicityButton = (props: publicityButtonProps) => {
   const {status, setStatus} = props;
   const handleAlignment = (
       event: React.MouseEvent<HTMLElement>,
