@@ -52,9 +52,7 @@ const overrideConditionList = () => {
                 disablePadding
                 sx={{p: 2}}
               >
-                <ListItemButton role={undefined}>
-                  <ListItemText id={labelId} primary={`「せいの」が含まれる場合, すべてのカレンダー, 空き, すべて公開 ${value + 1}`}/>
-                </ListItemButton>
+                <ListItemText id={labelId} primary={`「せいの」が含まれる場合, すべてのカレンダー, 空き, すべて公開 ${value + 1}`}/>
               </ListItem>
             );
           })}
