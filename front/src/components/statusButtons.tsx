@@ -5,20 +5,24 @@ import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
 import ClearIcon from '@mui/icons-material/Clear';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-const statusButtons = () => {
-  const [value, setValue] = React.useState<string>('ok');
-
+export type Status = 'ok' | 'soso' | 'ng' | 'ignore'
+export type statusButtonProps = {
+  status: Status
+  setStatus: (status: Status) => any
+}
+const statusButtons = (props: statusButtonProps) => {
+  const {status, setStatus} = props;
   const handleAlignment = (
       event: React.MouseEvent<HTMLElement>,
-      newAlignment: string | null,
+      newAlignment: Status,
   ) => {
     if(newAlignment !== null){
-      setValue(newAlignment);
+      setStatus(newAlignment);
     }
   };
   return (
       <ToggleButtonGroup
-          value={value}
+          value={status}
           exclusive
           onChange={handleAlignment}
           aria-label="text alignment"
