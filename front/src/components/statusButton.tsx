@@ -10,7 +10,7 @@ export type statusButtonProps = {
   status: Status
   setStatus: (status: Status) => any
 }
-const statusButtons = (props: statusButtonProps) => {
+const statusButton = (props: statusButtonProps) => {
   const {status, setStatus} = props;
   const handleAlignment = (
       event: React.MouseEvent<HTMLElement>,
@@ -26,6 +26,7 @@ const statusButtons = (props: statusButtonProps) => {
           exclusive
           onChange={handleAlignment}
           aria-label="text alignment"
+          fullWidth
       >
         <ToggleButton value="ok">
           <RadioButtonUncheckedIcon/>
@@ -44,4 +45,4 @@ const statusButtons = (props: statusButtonProps) => {
   )
 }
 
-export default statusButtons
+export default statusButton

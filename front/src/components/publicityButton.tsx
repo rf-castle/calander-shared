@@ -6,7 +6,7 @@ export type statusButtonProps = {
   status: Publicity,
   setStatus: (status: Publicity) => any
 }
-const statusButtons = (props: statusButtonProps) => {
+const publicityButton = (props: statusButtonProps) => {
   const {status, setStatus} = props;
   const handleAlignment = (
       event: React.MouseEvent<HTMLElement>,
@@ -22,6 +22,7 @@ const statusButtons = (props: statusButtonProps) => {
           exclusive
           onChange={handleAlignment}
           aria-label="text alignment"
+          fullWidth
       >
         <ToggleButton value='all'>
           すべて公開
@@ -34,4 +35,4 @@ const statusButtons = (props: statusButtonProps) => {
   )
 }
 
-export default statusButtons
+export default publicityButton

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import StatusButtons, {Status} from '../../components/statusButtons';
+import StatusButton, {Status} from '../../components/statusButton';
 import PublicityButton, {Publicity} from '../../components/publicityButton';
 
 const testPage = () => {
@@ -8,7 +8,7 @@ const testPage = () => {
   console.log(`status: ${status} publicity: ${publicity}`)
   return (
       <div>
-        <StatusButtons status={status} setStatus={setStatus}/>
+        <StatusButton status={status} setStatus={setStatus}/>
         <PublicityButton status={publicity} setStatus={setPublicity}/>
       </div>
   )
