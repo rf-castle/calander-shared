@@ -3,15 +3,10 @@ on:
   push:
     branches: '**'
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: amondnet/now-deployment@v2
+      - uses: actions/checkout@v1
+      - uses: enriikke/gatsby-gh-pages-action@v2
         with:
-          zeit-token: ${{ secrets.ZEIT_TOKEN }} # Required
-          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-          now-args: '' #Optional
-          now-org-id: ${{ secrets.ORG_ID}}  #Required
-          now-project-id: ${{ secrets.PROJECT_ID}} #Required 
-          working-directory: ./front
+          access-token: ${{ secrets.ACCESS_TOKEN }}
