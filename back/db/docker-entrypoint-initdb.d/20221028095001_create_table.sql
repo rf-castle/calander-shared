@@ -37,12 +37,15 @@ CREATE TABLE Members (
   room_id VARCHAR(255) NOT NULL
     REFERENCES Rooms(room_id) ON DELETE CASCADE ON UPDATE CASCADE,
   nickname VARCHAR(255) NOT NULL,
+  status ENUM('admin', 'general', 'waiting for approval') NOT NULL,
   UNIQUE (user_id, room_id)
 );
 
 CREATE TABLE Rooms (
   room_id VARCHAR(255) PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  primary_admin_id VARCHAR(255) NOT NULL
+    REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Webhooks (
