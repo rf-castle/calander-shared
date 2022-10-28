@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import StatusButtons, {Status} from '../../components/statusButtons';
-import PublicityButton, {Publicity} from '../../components/publicityButton';
+import StatusButton, {Status} from '../../components/button/statusButton';
+import PublicityButton, {Publicity} from '../../components/button/publicityButton';
 
 const testPage = () => {
   const [status, setStatus] = useState<Status>('ok');
@@ -8,7 +8,7 @@ const testPage = () => {
   console.log(`status: ${status} publicity: ${publicity}`)
   return (
       <div>
-        <StatusButtons status={status} setStatus={setStatus}/>
+        <StatusButton status={status} setStatus={setStatus}/>
         <PublicityButton status={publicity} setStatus={setPublicity}/>
       </div>
   )
