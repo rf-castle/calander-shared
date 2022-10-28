@@ -3,8 +3,6 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-name: Test and Deploy with PR number alias and comment apps URL
-
 jobs:
   test:
     name: CI Test
