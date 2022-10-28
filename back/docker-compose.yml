@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0.27
+    volumes:
+      - ./dbdata:/var/lib/mysql
+      # - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=calender
+    ports:
+      - "51234:3306"
+  web:
+    build: .
+    environment:
+      - MYSQL_DSN=root:calender@tcp(db:3306)/calender
+    volumes:
+      - ./data:/go/src/app/data
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
