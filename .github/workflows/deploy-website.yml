@@ -30,9 +30,6 @@ jobs:
           --no-progress
           --non-interactive
 
-      - name: Test
-        run: yarn test
-
   deploy_to_zeit_now_staging:
     name: Deploy and Alias with PR number
     runs-on: ubuntu-latest
