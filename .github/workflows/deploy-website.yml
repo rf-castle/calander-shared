@@ -1,8 +1,7 @@
 name: deploy website
-on:
+on: 
   push:
-    tags:
-      - '*'
+    branches: '**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
