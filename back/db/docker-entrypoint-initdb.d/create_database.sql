@@ -1,1 +1,1 @@
-create database calender;
+CREATE DATABASE calender;
