@@ -1,7 +1,7 @@
 package domain
 
 type OriginalCalender struct {
-	CalenderId uint64
+	CalenderId uint32
 	UserId     string
 	Url        string
 }

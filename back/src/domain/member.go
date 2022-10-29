@@ -1,13 +1,26 @@
 package domain
 
 type Member struct {
-	MemberId uint64
+	MemberId uint32
 	UserId   string
 	RoomId   string
 	Nickname string
-	Status   string
+	Role     Role
 }
 
+type Role string
+
+const (
+	ADMIN   = Role("admin")
+	GENERAL = Role("general")
+	WAITING = Role("waiting for approval")
+)
+
 type MemberRepository interface {
-	GetMemberByUserIdAndRoomId(userId string, roomId string) (*Member, error)
+	Save(member *Member) error
+	GetByUserIdAndRoomId(userId string, roomId string) (*Member, error)
+}
+
+func (member *Member) ChangeRole(newRole Role) {
+	member.Role = newRole
 }
