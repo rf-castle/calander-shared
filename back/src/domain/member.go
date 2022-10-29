@@ -13,7 +13,7 @@ type Role string
 const (
 	ADMIN   = Role("admin")
 	GENERAL = Role("general")
-	WAITING = Role("waiting for approval")
+	WAITING = Role("waiting")
 )
 
 type MemberRepository interface {
