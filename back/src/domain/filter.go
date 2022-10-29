@@ -1,4 +1,4 @@
-package entity
+package domain
 
 type Filter struct {
 	FilterId             uint64
