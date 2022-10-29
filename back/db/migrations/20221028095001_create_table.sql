@@ -1,10 +1,6 @@
 
 -- +goose Up
-
-CREATE DATABASE db;
-
-USE db;
-
+-- +goose StatementBegin
 CREATE TABLE Users (
   user_id VARCHAR(255) PRIMARY KEY,
   name VARCHAR(255) NOT NULL UNIQUE
@@ -55,3 +51,14 @@ CREATE TABLE Webhooks (
   service_name VARCHAR(255) NOT NULL,
   url VARCHAR(1023) NOT NULL
 );
+-- +goose StatementEnd
+
+-- +goose Down
+-- +goose StatementBegin
+DROP TABLE Webhooks
+DROP TABLE Rooms
+DROP TABLE Members
+DROP TABLE Filters
+DROP TABLE OriginalCalenders
+DROP TABLE Users
+-- +goose StatementEnd
