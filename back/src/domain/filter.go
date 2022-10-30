@@ -28,5 +28,11 @@ const (
 
 type FilterRepository interface {
 	GetByMemberId(memberId uint32) ([]*Filter, error)
-	CreateFilter(memberId uint32, filterQuery string, filteringCalendarId *uint32, filteredPublicity Publicity, filteredAvailability Availability) (Filter, error)
+	Create(
+		memberId uint32,
+		filterQuery string, 
+		filteringCalendarId *uint32, 
+		filteredPublicity Publicity, 
+		filteredAvailability Availability
+	) (Filter, error)
 }

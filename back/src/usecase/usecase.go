@@ -146,7 +146,7 @@ func (this *UseCaseImpl) AddFilter(
 		return err
 	}
 
-	this.filterRepository.CreateFilter(member.MemberId, filterQuery, filteringCalendarId, filterdPublicity, filterdAvailability)
+	this.filterRepository.Create(member.MemberId, filterQuery, filteringCalendarId, filterdPublicity, filterdAvailability)
 
 	return nil
 }
