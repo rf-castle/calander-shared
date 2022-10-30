@@ -5,7 +5,12 @@ type Calendar struct {
 	CalenderName   string
 	CalenderUserId *string
 	// TODO: add more fields
-	Events []*Event
+	Events      []*Event
+	FetchOrigin *FetchOrigin
+}
+
+type FetchOrigin interface {
+	Fetch() (Calendar, error)
 }
 
 type CalendarRepository interface {
