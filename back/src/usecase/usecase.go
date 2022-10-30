@@ -152,5 +152,24 @@ func (this *UseCaseImpl) AddFilter(
 }
 
 func (this *UseCaseImpl) SwapFilter(filterAId uint32, filterBId uint32) error {
-	panic("not implemented")
+	filterA, err := this.filterRepository.Get(filterAId)
+	if err != nil {
+		return err
+	}
+	filterB, err := this.filterRepository.Get(filterBId)
+	if err != nil {
+		return err
+	}
+	filterAOrder := filterA.Order
+	filterA.ChangeOrder(filterB.Order)
+	filterB.ChangeOrder(filterAOrder)
+	err = this.filterRepository.Save(filterA)
+	if err != nil {
+		return err
+	}
+	err = this.filterRepository.Save(filterB)
+	if err != nil {
+		return err
+	}
+	return nil
 }
