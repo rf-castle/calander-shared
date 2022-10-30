@@ -52,18 +52,12 @@ func NewUseCase(
 }
 
 func (this *UseCaseImpl) CreateUser(name string) (*domain.User, error) {
-	// generate userId
 	userId := uuid.NewV4().String()
-
-	// create user
 	user := domain.NewUser(userId, name)
-
-	// save user
 	err := this.userRepository.Save(user)
 	if err != nil {
 		return nil, err
 	}
-
 	return user, nil
 }
 
@@ -72,64 +66,45 @@ func (this *UseCaseImpl) GetJoinedRooms(userId string) ([]RoomWithRole, error) {
 }
 
 func (this *UseCaseImpl) CreateRoom(userId string, name string) (*domain.Room, error) {
-	// generate roomId
 	roomId := uuid.NewV4().String()
-
-	// create room
 	room := domain.NewRoom(roomId, name)
-
-	// save room
 	err := this.roomRepository.Save(room)
 	if err != nil {
 		return nil, err
 	}
-
-	// create member
 	_, err = this.memberRepository.CreateMember(userId, roomId, name, domain.ADMIN)
 	if err != nil {
 		return nil, err
 	}
-
 	return room, nil
 }
 
 func (this *UseCaseImpl) ChangeMemberRole(roomId string, userId string, userRole string) error {
-	// get member
 	member, err := this.memberRepository.GetByUserIdAndRoomId(userId, roomId)
 	if err != nil {
 		return err
 	}
-
-	// change role
 	member.ChangeRole(domain.Role(userRole))
-
-	// save member
 	err = this.memberRepository.Save(member)
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
 func (this *UseCaseImpl) GetRoomById(roomId string) (*RoomInformation, error) {
-	// get room
 	room, err := this.roomRepository.Get(roomId)
 	if err != nil {
 		return nil, err
 	}
-
-	// get members
 	members, err := this.memberReadModel.GetByRoomId(roomId)
 	if err != nil {
 		return nil, err
 	}
-
 	roomInformation := RoomInformation{
 		Room:    room,
 		members: members,
 	}
-
 	return &roomInformation, nil
 }
 
@@ -140,14 +115,12 @@ func (this *UseCaseImpl) AddFilter(
 	filteringCalendarId *uint32,
 	filterdPublicity domain.Publicity,
 	filterdAvailability domain.Availability) error {
-
+	
 	member, err := this.memberRepository.GetByUserIdAndRoomId(userId, roomId)
 	if err != nil {
 		return err
 	}
-
 	this.filterRepository.Create(member.MemberId, filterQuery, filteringCalendarId, filterdPublicity, filterdAvailability)
-
 	return nil
 }
 
