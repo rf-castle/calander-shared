@@ -1,8 +1,8 @@
 package usecase
 
 import (
+	"github.com/gofrs/uuid"
 	"github.com/rf-castle/calander-shared/back/src/domain"
-	"github.com/satori/go.uuid"
 )
 
 type RoomInformation struct {
