@@ -17,6 +17,7 @@ const (
 )
 
 type MemberRepository interface {
+	CreateMember(userId string, roomId string, nickname string, role Role) (*Member, error)
 	Save(member *Member) error
 	GetByUserIdAndRoomId(userId string, roomId string) (*Member, error)
 }
