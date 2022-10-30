@@ -5,29 +5,13 @@ import (
 	"github.com/rf-castle/calander-shared/back/src/domain"
 )
 
-type UseCase interface {
-	CreateUser(name string) (*domain.User, error)
-	GetJoinedRooms(userId string) ([]RoomWithRole, error)
-	CreateRoom(userId string, name string) (*domain.Room, error)
-	ChangeMemberRole(roomId string, userId string, userRole string) error
-	GetRoomById(roomId string) (*RoomInformation, error)
-	AddFilter(
-		userId string,
-		roomId string,
-		filterQuery string,
-		filteringCalendarId *uint32,
-		filterdPublicity domain.Publicity,
-		filterdAvailability domain.Availability) error
-	SwapFilter(filterAId uint32, filterBId uint32) error
-}
-
 type UseCaseImpl struct {
 	userRepository     domain.UserRepository
 	userReadWriteModel UserReadWriteModel
 	roomRepository     domain.RoomRepository
 	memberRepository   domain.MemberRepository
 	memberReadModel    MemberReadModel
-	filterRepository   domain.FilterRepository
+
 	calendarRepository domain.CalendarRepository
 }
 
@@ -101,43 +85,4 @@ func (this *UseCaseImpl) GetRoomById(roomId string) (*RoomInformation, error) {
 		members: members,
 	}
 	return &roomInformation, nil
-}
-
-func (this *UseCaseImpl) AddFilter(
-	userId string,
-	roomId string,
-	filterQuery string,
-	filteringCalendarId *uint32,
-	filterdPublicity domain.Publicity,
-	filterdAvailability domain.Availability) error {
-
-	member, err := this.memberRepository.GetByUserIdAndRoomId(userId, roomId)
-	if err != nil {
-		return err
-	}
-	this.filterRepository.Create(member.MemberId, filterQuery, filteringCalendarId, filterdPublicity, filterdAvailability)
-	return nil
-}
-
-func (this *UseCaseImpl) SwapFilter(filterAId uint32, filterBId uint32) error {
-	filterA, err := this.filterRepository.Get(filterAId)
-	if err != nil {
-		return err
-	}
-	filterB, err := this.filterRepository.Get(filterBId)
-	if err != nil {
-		return err
-	}
-	filterAOrder := filterA.Order
-	filterA.ChangeOrder(filterB.Order)
-	filterB.ChangeOrder(filterAOrder)
-	err = this.filterRepository.Save(filterA)
-	if err != nil {
-		return err
-	}
-	err = this.filterRepository.Save(filterB)
-	if err != nil {
-		return err
-	}
-	return nil
 }
