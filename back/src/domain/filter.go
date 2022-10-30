@@ -11,16 +11,18 @@ type Filter struct {
 }
 
 type Publicity string
+
 const (
-	OPEN  = Publicity("open")
+	OPEN   = Publicity("open")
 	SHADOW = Publicity("shadow")
 )
 
 type Availability string
+
 const (
-	OK		 = Availability("ok")
-	SO_SO	 = Availability("so-so")
-	NG		 = Availability("ng")
+	OK     = Availability("ok")
+	SO_SO  = Availability("so-so")
+	NG     = Availability("ng")
 	IGNORE = Availability("ignore")
 )
 

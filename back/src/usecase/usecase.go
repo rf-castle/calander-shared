@@ -15,18 +15,18 @@ type UseCase interface {
 	GetRoomById(userId string) (*RoomInformation, error)
 	AddFilter(
 		userId string,
-		filterQuery string, 
-		filteringCalendarId *uint32, 
-		filterdPublicity domain.Publicity, 
+		filterQuery string,
+		filteringCalendarId *uint32,
+		filterdPublicity domain.Publicity,
 		filterdAvailability domain.Availability) error
 	SwapFilter(filterAId uint32, filterBId uint32) error
 }
 
 type UseCaseImpl struct {
-	userRepository domain.UserRepository
-	roomRepository domain.RoomRepository
-	memberRepository domain.MemberRepository
-	filterRepository domain.FilterRepository
+	userRepository     domain.UserRepository
+	roomRepository     domain.RoomRepository
+	memberRepository   domain.MemberRepository
+	filterRepository   domain.FilterRepository
 	calendarRepository domain.CalendarRepository
 }
 
@@ -37,10 +37,10 @@ func NewUseCase(
 	filterRepository domain.FilterRepository,
 	calendarRepository domain.CalendarRepository) UseCase {
 	return &UseCaseImpl{
-		userRepository: userRepository,
-		roomRepository: roomRepository,
-		memberRepository: memberRepository,
-		filterRepository: filterRepository,
+		userRepository:     userRepository,
+		roomRepository:     roomRepository,
+		memberRepository:   memberRepository,
+		filterRepository:   filterRepository,
 		calendarRepository: calendarRepository,
 	}
 }
@@ -67,9 +67,9 @@ func (this *UseCaseImpl) GetRoomById(userId string) (*RoomInformation, error) {
 
 func (this *UseCaseImpl) AddFilter(
 	userId string,
-	filterQuery string, 
-	filteringCalendarId *uint32, 
-	filterdPublicity domain.Publicity, 
+	filterQuery string,
+	filteringCalendarId *uint32,
+	filterdPublicity domain.Publicity,
 	filterdAvailability domain.Availability) error {
 	panic("not implemented")
 }

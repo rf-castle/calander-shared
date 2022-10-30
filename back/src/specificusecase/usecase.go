@@ -3,8 +3,8 @@ package specificusecase
 // 外部とのやり取りにurlを使うことを知っていることが特徴
 
 import (
-	// "github.com/rf-castle/calander-shared/back/src/domain"
-	//"github.com/rf-castle/calander-shared/back/src/usecase"
+// "github.com/rf-castle/calander-shared/back/src/domain"
+//"github.com/rf-castle/calander-shared/back/src/usecase"
 )
 
 // 未確定
