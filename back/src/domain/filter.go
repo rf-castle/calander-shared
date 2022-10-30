@@ -33,6 +33,6 @@ type FilterRepository interface {
 		filterQuery string, 
 		filteringCalendarId *uint32, 
 		filteredPublicity Publicity, 
-		filteredAvailability Availability
+		filteredAvailability Availability,
 	) (Filter, error)
 }
