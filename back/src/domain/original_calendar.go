@@ -2,10 +2,10 @@ package domain
 
 type OriginalCalendar struct {
 	OriginalCalendarId uint32
-	Name string
-	UserId string
-	CalendarId uint32
-	FetchOrigin FetchOriginModel
+	Name               string
+	UserId             string
+	CalendarId         uint32
+	FetchOrigin        FetchOriginModel
 }
 
 type FetchOriginModel interface {

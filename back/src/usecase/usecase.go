@@ -110,7 +110,7 @@ func (this *UseCaseImpl) AddFilter(
 	filteringCalendarId *uint32,
 	filterdPublicity domain.Publicity,
 	filterdAvailability domain.Availability) error {
-	
+
 	member, err := this.memberRepository.GetByUserIdAndRoomId(userId, roomId)
 	if err != nil {
 		return err

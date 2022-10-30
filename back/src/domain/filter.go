@@ -30,9 +30,9 @@ type FilterRepository interface {
 	GetByMemberId(memberId uint32) ([]*Filter, error)
 	Create(
 		memberId uint32,
-		filterQuery string, 
-		filteringCalendarId *uint32, 
-		filteredPublicity Publicity, 
+		filterQuery string,
+		filteringCalendarId *uint32,
+		filteredPublicity Publicity,
 		filteredAvailability Availability,
 	) (Filter, error)
 }
