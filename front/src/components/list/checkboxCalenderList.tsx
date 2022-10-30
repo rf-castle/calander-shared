@@ -1,51 +1,30 @@
-import { Checkbox, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ToggleButton, ToggleButtonGroup} from '@mui/material';
+import { Checkbox, FormControl, FormControlLabel, List, ListItemButton, ListItemIcon, ListItemText, Radio, RadioGroup} from '@mui/material';
 import NoMeetingRoomIcon from '@mui/icons-material/NoMeetingRoom';
 import React, {PropsWithChildren} from 'react';
 
-const checkboxCalenderList = () => {
+export type checkboxCalenderListProps = {
+    open: boolean
+    index: number
+    setIndex: (index: number) => any
+}
 
-    const [checked, setChecked] = React.useState([0]);
-
-    const handleToggle = (value: number) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-        newChecked.push(value);
-        } else {
-        newChecked.splice(currentIndex, 1);
-        }
-
-        setChecked(newChecked);
-    };
-
+const checkboxCalenderList = (props: checkboxCalenderListProps) => {
+    const calenderNames =[1, 2, 3, 4].map((value) => `カレンダー${value}`)
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+        props.setIndex(parseInt(value))
+    }
     return (
-        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-        {[0, 1, 2, 3].map((value) => {
-            const labelId = `checkbox-list-label-${value}`;
-
-            return (
-            <ListItem
-                component="div"
-                key={value}
-                disablePadding
+        <FormControl>
+            <RadioGroup
+                sx={{ width: '100%', bgcolor: 'background.paper', display: props.open ? "inherit": "none"}}
+                onChange={handleChange}
             >
-                <ListItemButton role={undefined}>
-                <ListItemIcon>
-                    <Checkbox
-                    edge="start"
-                    checked={checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ 'aria-labelledby': labelId }}
-                    />
-                </ListItemIcon>
-                    <ListItemText id={labelId} primary={`カレンダー ${value + 1}`}/>
-                </ListItemButton>
-            </ListItem>
-            );
-        })}
-        </List>
+            {calenderNames.map((value ,index)=>
+                
+                <FormControlLabel value={index} control={<Radio />} label={value} />
+            )}
+            </RadioGroup>
+        </FormControl>
     )
 }
 

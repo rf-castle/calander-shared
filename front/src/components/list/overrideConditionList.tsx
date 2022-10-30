@@ -1,15 +1,11 @@
-import { Box, Checkbox, Divider, Fab, Grid, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, ToggleButton, ToggleButtonGroup, Zoom} from '@mui/material';
-import NoMeetingRoomIcon from '@mui/icons-material/NoMeetingRoom';
-import React, {PropsWithChildren} from 'react';
-import PublicityButton, { Publicity, publicityButtonProps } from '../button/publicityButton';
-import StatusButton, { Status, statusButtonProps } from '../button/statusButton';
+import {Box, Divider, IconButton, List, ListItem, ListItemText} from '@mui/material';
+import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import AddIcon from '@mui/icons-material/Add';
 
-const overrideConditionList = () => {
+const  overrideConditionList = () => {
     return (
         <List sx={{ width: '100%', bgcolor: 'background.paper', paddingBottom: "100px" }}>
           {[0, 1, 2, 3].map((value) => {
@@ -57,13 +53,7 @@ const overrideConditionList = () => {
             );
           })}
 
-          <Zoom in={true} mountOnEnter unmountOnExit>
-            <Box role="presentation" sx={{position:"fixed",bottom:32,right:32}}>
-              <Fab color="info" aria-label="show-feedback">
-                <AddIcon />
-              </Fab>
-            </Box>
-          </Zoom>
+          
         </List>
       )
       

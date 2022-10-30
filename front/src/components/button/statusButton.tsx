@@ -5,16 +5,16 @@ import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
 import ClearIcon from '@mui/icons-material/Clear';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-export type Status = 'ok' | 'soso' | 'ng' | 'ignore'
-export type statusButtonProps = {
-  status: Status
-  setStatus: (status: Status) => any
+export type Availability = 'ok' | 'soso' | 'ng' | 'ignore'
+export type AvailabilityButtonProps = {
+  status: Availability
+  setStatus: (status: Availability) => any
 }
-const statusButton = (props: statusButtonProps) => {
+const statusButton = (props: AvailabilityButtonProps) => {
   const {status, setStatus} = props;
   const handleAlignment = (
       event: React.MouseEvent<HTMLElement>,
-      newAlignment: Status,
+      newAlignment: Availability,
   ) => {
     if(newAlignment !== null){
       setStatus(newAlignment);

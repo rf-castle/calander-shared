@@ -7,23 +7,42 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import PublicityButton, { Publicity } from '../button/publicityButton';
-import StatusButton, { Status } from '../button/statusButton';
-import { Divider, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import StatusButton, { Availability } from '../button/statusButton';
+import { Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import CheckboxCalenderList from '../list/checkboxCalenderList';
 
+export type addConditionState = {
+  open: boolean
+  calander: number
+  allCalender: boolean
+  availability: Availability
+  publicity: Publicity
+  query: string
+}
+
 export type addConditionProps = {
-    open: boolean
-    setOpen: (isOpen: boolean) => any
+    state: addConditionState,
+    setState: (state: addConditionState) => any
 }
 
 const FormDialog = (prop: addConditionProps) => {
-
+  const {state} = prop
+  const setState = (newState: Partial<addConditionState>) => {
+    prop.setState({...state, ...newState});
+  }
   const handleClose = () => {
-    prop.setOpen(false);
+    setState({open: false});
   };
+  const handleAllCarander = (event: SelectChangeEvent<string>) => {
+    setState({allCalender: event.target.value === "all"});
+  }
+  const handleTextInput = (event: any, value: string) => {
+    setState({query: value})
+  }
+
 
   return (
-      <Dialog open={prop.open} onClose={handleClose}>
+      <Dialog open={state.open} onClose={handleClose}>
         <DialogTitle>条件を追加</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -47,7 +66,8 @@ const FormDialog = (prop: addConditionProps) => {
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value="selected"
+                    value={state.allCalender ? "all" : "selected"}
+                    onChange={handleAllCarander}
                 >
                     <MenuItem value="all">すべてのカレンダー</MenuItem>
                     <MenuItem value="selected">カレンダー指定</MenuItem>
@@ -55,20 +75,16 @@ const FormDialog = (prop: addConditionProps) => {
              </FormControl>
 
 
-             <CheckboxCalenderList/>
+             <CheckboxCalenderList open={!state.allCalender} index={state.calander} setIndex={(index) => {setState({calander: index})}}/>
           <Divider/>
 
-          <Typography color="textSecondary">　</Typography>
+          <Typography color="textSecondary"/>
           <Typography color="textSecondary">都合</Typography>
-          <StatusButton status={'ok'} setStatus={function (status: Status) {
-                  throw new Error('Function not implemented.');
-              } } />
-          <Typography color="textSecondary">　</Typography>
+          <StatusButton status={state.availability} setStatus={(availability) => {setState({availability})}} />
+          <Typography color="textSecondary"/>
           <Typography color="textSecondary">公開範囲</Typography>
-          <PublicityButton status={'all'} setStatus={function (status: Publicity) {
-                  throw new Error('Function not implemented.');
-              } } />
-          <Typography color="textSecondary">　</Typography>
+          <PublicityButton status={state.publicity} setStatus={(publicity) => setState({publicity})} />
+          <Typography color="textSecondary"/>
 
         </DialogContent>
         <DialogActions>
