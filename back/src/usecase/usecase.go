@@ -5,11 +5,6 @@ import (
 	"github.com/rf-castle/calander-shared/back/src/domain"
 )
 
-type RoomInformation struct {
-	Room    *domain.Room
-	members []domain.Member
-}
-
 type UseCase interface {
 	CreateUser(name string) (*domain.User, error)
 	GetJoinedRooms(userId string) ([]RoomWithRole, error)
