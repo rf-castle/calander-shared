@@ -16,9 +16,12 @@ type UseCaseImpl struct {
 }
 
 func (this *UseCaseImpl) CreateUser(name string) (*domain.User, error) {
-	userId := uuid.NewV4().String()
-	user := domain.NewUser(userId, name)
-	err := this.userRepository.Save(user)
+	userId, err := uuid.NewV4()
+	if err != nil {
+		return nil, err
+	}
+	user := domain.NewUser(userId.String(), name)
+	err = this.userRepository.Save(user)
 	if err != nil {
 		return nil, err
 	}
@@ -30,13 +33,16 @@ func (this *UseCaseImpl) GetJoinedRooms(userId string) ([]RoomWithRole, error) {
 }
 
 func (this *UseCaseImpl) CreateRoom(userId string, name string) (*domain.Room, error) {
-	roomId := uuid.NewV4().String()
-	room := domain.NewRoom(roomId, name)
-	err := this.roomRepository.Save(room)
+	roomId, err := uuid.NewV4()
 	if err != nil {
 		return nil, err
 	}
-	_, err = this.memberRepository.CreateMember(userId, roomId, name, domain.ADMIN)
+	room := domain.NewRoom(roomId.String(), name)
+	err = this.roomRepository.Save(room)
+	if err != nil {
+		return nil, err
+	}
+	_, err = this.memberRepository.CreateMember(userId, roomId.String(), name, domain.ADMIN)
 	if err != nil {
 		return nil, err
 	}
