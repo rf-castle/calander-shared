@@ -11,23 +11,8 @@ type UseCaseImpl struct {
 	roomRepository     domain.RoomRepository
 	memberRepository   domain.MemberRepository
 	memberReadModel    MemberReadModel
-
+	filterRepository   domain.FilterRepository
 	calendarRepository domain.CalendarRepository
-}
-
-func NewUseCase(
-	userRepository domain.UserRepository,
-	roomRepository domain.RoomRepository,
-	memberRepository domain.MemberRepository,
-	filterRepository domain.FilterRepository,
-	calendarRepository domain.CalendarRepository) UseCase {
-	return &UseCaseImpl{
-		userRepository:     userRepository,
-		roomRepository:     roomRepository,
-		memberRepository:   memberRepository,
-		filterRepository:   filterRepository,
-		calendarRepository: calendarRepository,
-	}
 }
 
 func (this *UseCaseImpl) CreateUser(name string) (*domain.User, error) {
