@@ -32,9 +32,9 @@ func (s *FilterService) SwapFilter(filterAId uint32, filterBId uint32) error {
 	if err != nil {
 		return err
 	}
-	filterAOrder := filterA.Order
-	filterA.ChangeOrder(filterB.Order)
-	filterB.ChangeOrder(filterAOrder)
+	filterAOrder := filterA.FilterOrder
+	filterA.FilterOrder = filterB.FilterOrder
+	filterB.FilterOrder = filterAOrder
 	err = s.filterRepository.Save(filterA)
 	if err != nil {
 		return err

@@ -27,7 +27,6 @@ const (
 )
 
 type FilterRepository interface {
-	GetByMemberId(memberId uint32) ([]*Filter, error)
 	Create(
 		memberId uint32,
 		filterQuery string,
@@ -35,4 +34,7 @@ type FilterRepository interface {
 		filteredPublicity Publicity,
 		filteredAvailability Availability,
 	) (Filter, error)
+	Save(filter *Filter) error
+	Get(filterId uint32) (*Filter, error)
+	GetByMemberId(memberId uint32) ([]*Filter, error)
 }
